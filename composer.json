@@ -1,0 +1,36 @@
+{
+    "name": "hafael/hotel",
+    "description": "Laravel Tenant Multi-Self-Hosted-DB connections with Migration tools package for Laravel 5.1+",
+    "keywords": ["laravel", "tenant", "database", "migration", "multi-db", "hotel", "mysql", "multi-tenant"],
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Rafael Villa-Verde",
+            "email": "villa655321verde@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=5.5.0",
+        "illuminate/support": ">=5.1.0"
+    },
+    "require-dev": {
+        "laravel/framework": ">=5.1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Hafael\\Hotel\\": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Hafael\\Hotel\\HotelServiceProvider"
+            ]
+        }
+    }
+}
