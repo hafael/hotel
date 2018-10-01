@@ -98,6 +98,18 @@ return [
     */
     'connection_table' => 'connections',
 
+    /*
+    |--------------------------------------------------------------------------
+    | Tenant Migration Model Class
+    |--------------------------------------------------------------------------
+    |
+    | Initial Epoch is a number in timestamp format (unix timestamp * 1000)
+    | used by LaraFlake package to determine the start time of their
+    | application for the creation of IDs in 64bit format.
+    |
+    */
+    'tenant_migration_class' => '\Hafael\Hotel\Models\TenantMigration',
+
 
     /*
     |--------------------------------------------------------------------------
