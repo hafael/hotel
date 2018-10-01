@@ -9,7 +9,6 @@ use Hafael\Hotel\Console\RefreshCommand;
 use Hafael\Hotel\Console\ResetCommand;
 use Hafael\Hotel\Console\RollbackCommand;
 use Hafael\Hotel\Console\StatusCommand;
-use Hafael\Hotel\Seeder\Manager;
 
 class HotelServiceProvider extends ServiceProvider
 {
@@ -33,8 +32,6 @@ class HotelServiceProvider extends ServiceProvider
         // all of the migration related commands that are used by the "Artisan" CLI
         // so that they may be easily accessed for registering with the consoles.
         $this->registerMigrator();
-
-        $this->registerSeeder();
 
         $this->registerCommands();
 
@@ -200,10 +197,5 @@ class HotelServiceProvider extends ServiceProvider
         ];
     }
 
-    protected function registerSeeder()
-    {
-        $this->app->singleton('tenantdb.seeder.manager', function () {
-            return new Manager();
-        });
-    }
+
 }
