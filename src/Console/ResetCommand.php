@@ -27,14 +27,14 @@ class ResetCommand extends BaseCommand
     /**
      * The migrator instance.
      *
-     * @var \Illuminate\Database\Migrations\Migrator
+     * @var \Hafael\Hotel\Migrator
      */
     protected $migrator;
 
     /**
      * Create a new migration rollback command instance.
      *
-     * @param  \Illuminate\Database\Migrations\Migrator  $migrator
+     * @param  \Hafael\Hotel\Migrator  $migrator
      * @return void
      */
     public function __construct(Migrator $migrator)

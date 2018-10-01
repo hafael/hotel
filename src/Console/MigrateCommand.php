@@ -35,14 +35,14 @@ class MigrateCommand extends BaseCommand
     /**
      * The migrator instance.
      *
-     * @var \Migrator\Migrator
+     * @var \Hafael\Hotel\Migrator
      */
     protected $migrator;
 
     /**
      * Create a new migration command instance.
      *
-     * @param  \Migrator\Migrator  $migrator
+     * @param  \Hafael\Hotel\Migrator  $migrator
      * @return void
      */
     public function __construct(Migrator $migrator)
