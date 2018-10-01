@@ -15,7 +15,7 @@ trait TenantRelations
   public function tenant_connection()
   {
     $tenantIdentifier = config('hotel.tenant_class_id');
-    $tenantConnectionClass = config('hotel.tenant_domain_class');
+    $tenantConnectionClass = config('hotel.tenant_connection_class');
     
     return $this->hasOne($tenantConnectionClass, 'tenant_id', $tenantIdentifier);
   }
