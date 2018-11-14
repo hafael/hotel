@@ -40,7 +40,7 @@ return [
     'tenant_connection_class' => '\Hafael\Hotel\Models\TenantConnection',
     
     //Tenant identifier
-    'tenant_id'  => 'tenant_id', 
+    'tenant_relation_column'  => 'tenant_id', 
     //DB Hostname
     'tenant_host_column'      => 'host',
     //DB Name

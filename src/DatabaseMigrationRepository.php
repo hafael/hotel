@@ -50,7 +50,7 @@ class DatabaseMigrationRepository implements MigrationRepositoryInterface
         $tenantIdColumn = config('hotel.migration_table_tenant_id_column');
 
         return $this->table()
-                ->when($tenantId, function($query, $tenantId) {
+                ->when($tenantId, function($query, $tenantId) use ($tenantIdColumn) {
                     $query->where($tenantIdColumn, $tenantId);
                 })
                 ->orderBy('batch', 'asc')
@@ -85,7 +85,7 @@ class DatabaseMigrationRepository implements MigrationRepositoryInterface
         $tenantIdColumn = config('hotel.migration_table_tenant_id_column');
         
         $query = $this->table()
-                      ->when($tenantId, function($query, $tenantId) {
+                      ->when($tenantId, function($query, $tenantId) use ($tenantIdColumn) {
                             $query->where($tenantIdColumn, $tenantId);
                       })
                       ->where('batch', $this->getLastBatchNumber($tenantId));
@@ -158,7 +158,7 @@ class DatabaseMigrationRepository implements MigrationRepositoryInterface
         $tenantIdColumn = config('hotel.migration_table_tenant_id_column');
 
         return $this->table()
-                    ->when($tenantId, function($query, $tenantId) {
+                    ->when($tenantId, function($query, $tenantId) use ($tenantIdColumn){
                         $query->where($tenantIdColumn, $tenantId);
                     })
                     ->max('batch');
@@ -177,7 +177,7 @@ class DatabaseMigrationRepository implements MigrationRepositoryInterface
 
         $tenantIdMigrationType = config('hotel.tenant_id_migration_type');
 
-        $schema->create($this->table, function ($table) {
+        $schema->create($this->table, function ($table) use ($tenantIdColumn){
             // The migrations table is responsible for keeping track of which of the
             // migrations have actually run for the application. We'll create the
             // table to hold the migration file's path as well as the batch ID.
