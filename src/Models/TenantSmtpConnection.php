@@ -68,7 +68,7 @@ class TenantSmtpConnection extends Model
 
     public function __construct()
     {
-        $this->table = config('hotel.connection_table');
+        $this->table = config('hotel.smtp_connection_table');
         $this->connection = config('hotel.system_schema');
 
         parent::__construct();
