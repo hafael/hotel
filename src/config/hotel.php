@@ -38,6 +38,18 @@ return [
     |
     */
     'tenant_connection_class' => '\Hafael\Hotel\Models\TenantConnection',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Tenant SMTP Connection Model Class
+    |--------------------------------------------------------------------------
+    |
+    | Initial Epoch is a number in timestamp format (unix timestamp * 1000)
+    | used by LaraFlake package to determine the start time of their
+    | application for the creation of IDs in 64bit format.
+    |
+    */
+    'tenant_smtp_connection_class' => '\Hafael\Hotel\Models\TenantSmtpConnection',
     
     //Tenant identifier
     'tenant_relation_column'  => 'tenant_id', 
@@ -97,6 +109,18 @@ return [
     |
     */
     'connection_table' => 'connections',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Tenant SMTP Connection Table
+    |--------------------------------------------------------------------------
+    |
+    | Initial Epoch is a number in timestamp format (unix timestamp * 1000)
+    | used by LaraFlake package to determine the start time of their
+    | application for the creation of IDs in 64bit format.
+    |
+    */
+    'smtp_connection_table' => 'smtp_connections',
 
     /*
     |--------------------------------------------------------------------------

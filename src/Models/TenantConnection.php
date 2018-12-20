@@ -87,6 +87,12 @@ class TenantConnection extends Model
         return $this->belongsTo($tenantDomainClass, 'tenant_id', 'tenant_id');
     }
 
+    public function smtp_connection()
+    {
+        $smtpConnectionClass = config('hotel.tenant_smtp_connection_class');
+        return $this->belongsTo($smtpConnectionClass, 'tenant_id', 'tenant_id');
+    }
+
     public function migrations()
     {
         $tenantMigrationClass = config('hotel.tenant_migration_class');

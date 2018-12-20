@@ -5,7 +5,7 @@ namespace Hafael\Hotel\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-class TenantDomain extends Model
+class TenantSmtpConnection extends Model
 {
     
     /**
@@ -20,7 +20,7 @@ class TenantDomain extends Model
      *
      * @var string
      */
-    protected $table = 'domains';
+    protected $table = 'smtp_connections';
 
 
     public $primaryKey = 'id';
@@ -32,11 +32,24 @@ class TenantDomain extends Model
      */
     protected $fillable = [
         'tenant_id',
-        'domain',
-        'subdomain',
-        'description',
+        'host',
+        'username',
+        'password',
+        'from',
+        'from_name',
+        'reply',
+        'port',
+        'encryption',
     ];
 
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        //
+    ];
 
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
@@ -55,7 +68,7 @@ class TenantDomain extends Model
 
     public function __construct()
     {
-        $this->table = config('hotel.domain_table');
+        $this->table = config('hotel.connection_table');
         $this->connection = config('hotel.system_schema');
 
         parent::__construct();
@@ -63,22 +76,25 @@ class TenantDomain extends Model
 
     public function tenant()
     {
-        $tenantClass = config('hotel.tenant_class');
+        $tenantConnectionClass = config('hotel.tenant_connection_class');
         $tenantIdColumn = config('hotel.tenant_class_id');
 
-        return $this->belongsTo($tenantClass, 'tenant_id', $tenantIdColumn);
+        return $this->belongsTo($tenantConnectionClass, 'tenant_id', $tenantIdColumn);
     }
 
-    public function tenant_connection()
+    public function domain()
     {
-        $connectionClass = config('hotel.tenant_connection_class');
-        return $this->hasOne($connectionClass, 'tenant_id', 'tenant_id');
+        $tenantDomainClass = config('hotel.tenant_domain_class');
+
+        return $this->belongsTo($tenantDomainClass, 'tenant_id', 'tenant_id');
     }
 
-    public function smtp_connection()
+    public function migrations()
     {
-        $smtpConnectionClass = config('hotel.tenant_smtp_connection_class');
-        return $this->hasOne($smtpConnectionClass, 'tenant_id', 'tenant_id');
+        $tenantMigrationClass = config('hotel.tenant_migration_class');
+
+        return $this->hasMany($tenantMigrationClass, 'tenant_id', 'tenant_id');
     }
+    
 
 }

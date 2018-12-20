@@ -20,6 +20,14 @@ trait TenantRelations
     return $this->hasOne($tenantConnectionClass, 'tenant_id', $tenantIdentifier);
   }
 
+  public function tenant_smtp_connection()
+  {
+    $tenantIdentifier = config('hotel.tenant_class_id');
+    $tenantSmtpConnectionClass = config('hotel.tenant_smtp_connection_class');
+    
+    return $this->hasOne($tenantSmtpConnectionClass, 'tenant_id', $tenantIdentifier);
+  }
+
   public function migrations()
   {
     $tenantIdentifier = config('hotel.tenant_class_id');

@@ -57,6 +57,11 @@ class TenantMiddleware {
         //Define a base de dados da aplicação (no cliente) a partir do domínio
         $this->reconnect($domain->tenant->tenant_connection);
 
+        //Define o driver/conexão de smtp do cliente a partir do dominio
+        if(!empty($domain->smtp_connection)) {
+            $this->setSMTPConnection($domain->smtp_connection);
+        }
+
         //Continua a requisição
         return $next($request);
     }
