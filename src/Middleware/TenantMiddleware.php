@@ -58,7 +58,7 @@ class TenantMiddleware {
         $this->reconnect($domain->tenant->tenant_connection);
 
         //Define o driver/conexão de smtp do cliente a partir do dominio
-        if(!empty($domain->smtp_connection)) {
+        if(!empty($domain->smtp_connection) && config('hotel.use_tenant_smtp_connection') === true) {
             $this->setSMTPConnection($domain->smtp_connection);
         }
 

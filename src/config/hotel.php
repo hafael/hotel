@@ -50,6 +50,8 @@ return [
     |
     */
     'tenant_smtp_connection_class' => '\Hafael\Hotel\Models\TenantSmtpConnection',
+
+    'use_tenant_smtp_connection' => false,
     
     //Tenant identifier
     'tenant_relation_column'  => 'tenant_id', 
