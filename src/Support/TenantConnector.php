@@ -20,6 +20,7 @@ trait TenantConnector {
    public function reconnect(TenantConnection $connection) 
    {     
       $tenantSchema = config('hotel.tenant_schema', 'tenant');
+      $tenantSessionName = config('hotel.migration_table_tenant_id_column', 'tenant_id');
 
       //Desconecta do esquema e limpa o cache.
       DB::purge($tenantSchema);
@@ -29,6 +30,8 @@ trait TenantConnector {
       Config::set('database.connections.'.$tenantSchema.'.database', $connection->database);
       Config::set('database.connections.'.$tenantSchema.'.username', $connection->username);
       Config::set('database.connections.'.$tenantSchema.'.password', $connection->password);
+
+      session([$tenantSessionName => $connection->tenant_id]);
       
       // Faz um ping para testar a conexão e retornar erro em caso de falha
       // com a nova conexão.
