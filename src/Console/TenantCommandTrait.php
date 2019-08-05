@@ -3,6 +3,7 @@
 namespace Hafael\Hotel\Console;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Config;
 
 trait TenantCommandTrait
 {
@@ -16,13 +17,15 @@ trait TenantCommandTrait
    
     $tenantSchema = config('hotel.tenant_schema');
     
-    config([
-      'database.connections.'.$tenantSchema.'.host' => $tenant[config('hotel.tenant_host_column')],
-      'database.connections.'.$tenantSchema.'.database' => $tenant[config('hotel.tenant_database_column')],
-      'database.connections.'.$tenantSchema.'.username' => $tenant[config('hotel.tenant_username_column')],
-      'database.connections.'.$tenantSchema.'.password' => $tenant[config('hotel.tenant_password_column')],
-      'database.connections.'.$tenantSchema.'.tenant_id' => $tenant[config('hotel.tenant_relation_column')],
-    ]);
+    Config::set('database.connections.'.$tenantSchema.'.host', $tenant[config('hotel.tenant_host_column')]);
+    Config::set('database.connections.'.$tenantSchema.'.database', $tenant[config('hotel.tenant_database_column')]);
+    Config::set('database.connections.'.$tenantSchema.'.username', $tenant[config('hotel.tenant_username_column')]);
+    Config::set('database.connections.'.$tenantSchema.'.password', $tenant[config('hotel.tenant_password_column')]);
+    
+    if(!empty($tenant[config('hotel.tenant_relation_column')]))
+    {
+        Config::set('database.connections.'.$tenantSchema.'.tenant_id', $tenant[config('hotel.tenant_relation_column')]);
+    }
 
     $this->getLaravel()['db']->purge($tenantSchema);
     // \DB::purge('tenant');
