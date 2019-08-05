@@ -21,6 +21,7 @@ trait TenantCommandTrait
       'database.connections.'.$tenantSchema.'.database' => $tenant[config('hotel.tenant_database_column')],
       'database.connections.'.$tenantSchema.'.username' => $tenant[config('hotel.tenant_username_column')],
       'database.connections.'.$tenantSchema.'.password' => $tenant[config('hotel.tenant_password_column')],
+      'database.connections.'.$tenantSchema.'.tenant_id' => $tenant[config('hotel.tenant_relation_column')],
     ]);
 
     $this->getLaravel()['db']->purge($tenantSchema);

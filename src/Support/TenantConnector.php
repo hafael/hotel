@@ -30,6 +30,7 @@ trait TenantConnector {
       Config::set('database.connections.'.$tenantSchema.'.database', $connection->database);
       Config::set('database.connections.'.$tenantSchema.'.username', $connection->username);
       Config::set('database.connections.'.$tenantSchema.'.password', $connection->password);
+      Config::set('database.connections.'.$tenantSchema.'.tenant_id', $connection->tenant_id);
 
       session([$tenantSessionName => $connection->tenant_id]);
       
